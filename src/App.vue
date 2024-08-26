@@ -1,10 +1,13 @@
 <template>
   <div class="box">
     <p>{{ str }}</p>
+    <el-button :icon="Check">按钮</el-button>
+    <el-button :icon="Plus">按钮</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
+import { Check, Plus } from '@element-plus/icons-vue'
 const str = 'abc'
 </script>
 
