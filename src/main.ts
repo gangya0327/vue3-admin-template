@@ -13,4 +13,7 @@ app.use(ElementPlus, {
   locale: zhCn,
 })
 
+// svg配置代码
+import 'virtual:svg-icons-register'
+
 app.mount('#app')
