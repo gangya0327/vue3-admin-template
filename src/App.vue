@@ -15,15 +15,43 @@
     </p>
 
     <div class="p-color">我是全局scss变量下的文本</div>
+    <br />
+
+    <div class="parent">
+      <div class="son"></div>
+      <div class="son"></div>
+      <div class="son"></div>
+      <div class="son"></div>
+      <div class="son"></div>
+      <div class="son"></div>
+      <div class="son"></div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { Check, Plus } from '@element-plus/icons-vue'
-import Test from '@/components/Test.vue'
-const str = 'abc'
+import { Check, Plus } from '@element-plus/icons-vue';
+import Test from '@/components/Test.vue';
+const str = 'abc';
 
-import SvgIcon from '@/components/SvgIcon/index.vue'
+import SvgIcon from '@/components/SvgIcon/index.vue';
+
+import request from '@/utils/request.ts';
+
+import { onMounted } from 'vue';
+
+onMounted(() => {
+  request({
+    url: '/user/login',
+    method: 'post',
+    data: {
+      username: 'admin',
+      password: '123456',
+    },
+  }).then((res: { code: number; message: string }) => {
+    console.log('res :>> ', res);
+  });
+});
 </script>
 
 <style lang="scss" scoped>
@@ -40,5 +68,29 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 
 .p-color {
   color: $p-color;
+}
+
+.parent {
+  border: 1px solid #ccc;
+  width: 600px;
+  display: flex;
+  flex-wrap: wrap;
+
+  .son {
+    width: 50px;
+    height: 50px;
+    $n: 5; // 每行个数
+    margin: 20px calc((100% - 50px * $n) / $n / 2);
+
+    &:nth-child(3n) {
+      background-color: burlywood;
+    }
+    &:nth-child(3n + 1) {
+      background-color: cornflowerblue;
+    }
+    &:nth-child(3n + 2) {
+      background-color: forestgreen;
+    }
+  }
 }
 </style>
