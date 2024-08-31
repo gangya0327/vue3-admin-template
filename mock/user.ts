@@ -23,6 +23,7 @@ function createUserList() {
       roles: ['测试账号'],
       buttons: ['cuser:query'],
       routes: ['home'],
+      token: 'test',
     },
   ]
 }

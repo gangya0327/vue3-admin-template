@@ -1,5 +1,5 @@
 <template>
-  123
+  Test 组件
 </template>
 
 <script setup lang="ts">

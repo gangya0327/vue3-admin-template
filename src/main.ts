@@ -17,7 +17,7 @@ app.use(ElementPlus, {
 import 'virtual:svg-icons-register';
 
 // 引入自定义插件，注册为全局组件
-import globalComponent from '@/components/index';
+import globalComponent from '@/components/index.ts';
 app.use(globalComponent);
 
 // 引入全局样式

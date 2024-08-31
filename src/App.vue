@@ -1,6 +1,5 @@
 <template>
   <div class="box">
-    <p>{{ str }}</p>
     <el-button :icon="Check">按钮</el-button>
     <el-button :icon="Plus">按钮</el-button>
 
@@ -32,24 +31,19 @@
 <script setup lang="ts">
 import { Check, Plus } from '@element-plus/icons-vue';
 import Test from '@/components/Test.vue';
-const str = 'abc';
 
 import SvgIcon from '@/components/SvgIcon/index.vue';
 
-import request from '@/utils/request.ts';
+// import { login, getUserInfo } from '@/api/user/index.ts';
+import { login, getUserInfo } from '@/api/user';
 
 import { onMounted } from 'vue';
-
 onMounted(() => {
-  request({
-    url: '/user/login',
-    method: 'post',
-    data: {
-      username: 'admin',
-      password: '123456',
-    },
-  }).then((res: { code: number; message: string }) => {
-    console.log('res :>> ', res);
+  login({ username: 'admin', password: '123456' }).then((res: { data: object }) => {
+    console.log('res :>> ', res.data);
+  });
+  getUserInfo().then((res: { data: object }) => {
+    console.log('res :>> ', res.data);
   });
 });
 </script>

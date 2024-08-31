@@ -1,20 +1,34 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
 import { ElMessage } from 'element-plus';
 
-const request = axios.create({
+// 自定义请求接口headers头参数类型
+type ResponseHeader = AxiosRequestHeaders & { token?: string };
+
+// 自定义请求接口request参数类型
+interface RequestConfig extends AxiosRequestConfig {
+  headers?: ResponseHeader;
+  noNeedToken?: boolean;
+}
+
+// 请求拦截器
+interface RequestInterceptorsConfig extends RequestConfig {
+  headers: ResponseHeader;
+}
+
+const service = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_API,
   timeout: 5000,
 });
 
 // 添加请求拦截器
-request.interceptors.request.use((config) => {
+service.interceptors.request.use((config: RequestInterceptorsConfig) => {
   // 返回配置对象
   return config;
 });
 
 // 添加响应拦截器
-request.interceptors.response.use(
-  (response) => {
+service.interceptors.response.use(
+  (response: AxiosResponse) => {
     return response.data;
   },
   (error) => {
@@ -41,4 +55,4 @@ request.interceptors.response.use(
   }
 );
 
-export default request;
+export default service;
