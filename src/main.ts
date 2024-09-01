@@ -23,4 +23,7 @@ app.use(globalComponent);
 // 引入全局样式
 import '@/styles/index.scss';
 
+import router from '@/router/index.ts';
+app.use(router);
+
 app.mount('#app');
