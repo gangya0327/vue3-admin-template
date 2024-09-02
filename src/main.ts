@@ -26,4 +26,7 @@ import '@/styles/index.scss';
 import router from '@/router/index.ts';
 app.use(router);
 
+import pinia from '@/store/index.ts';
+app.use(pinia);
+
 app.mount('#app');
