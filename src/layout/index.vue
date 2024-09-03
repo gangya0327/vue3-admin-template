@@ -3,6 +3,11 @@
     <!-- 左侧菜单 -->
     <div class="layout-slider">
       <Logo />
+      <el-scrollbar class="scrollbar">
+        <el-menu background-color="#001529" text-color="#fff">
+          <Menu :menuList="menuList" />
+        </el-menu>
+      </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
     <div class="layout-tabbar">顶部</div>
@@ -12,7 +17,13 @@
 </template>
 
 <script lang="ts" setup>
+import { reactive } from 'vue';
 import Logo from './logo/index.vue';
+import Menu from './menu/index.vue';
+
+import useUserStore from '@/store/modules/user.ts';
+const userStore = useUserStore();
+const menuList = reactive(userStore.menuRoutes);
 </script>
 
 <style lang="scss" scoped>
@@ -24,6 +35,16 @@ import Logo from './logo/index.vue';
     width: $base-menu-width;
     height: 100vh;
     background-color: $base-menu-bg;
+
+    .scrollbar {
+      width: 100%;
+      color: #fff;
+      height: calc(100% - $base-menu-logo-height);
+
+      .el-menu {
+        border-right: none;
+      }
+    }
   }
 
   .layout-tabbar {
@@ -41,8 +62,6 @@ import Logo from './logo/index.vue';
     left: $base-menu-width;
     width: calc(100% - #{$base-menu-width});
     height: calc(100% - #{$base-tabbar-height});
-    padding: 10px;
-    overflow-y: hidden;
     background-color: tan;
   }
 }
