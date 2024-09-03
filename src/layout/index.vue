@@ -4,15 +4,19 @@
     <div class="layout-slider">
       <Logo />
       <el-scrollbar class="scrollbar">
-        <el-menu background-color="#001529" text-color="#fff">
+        <el-menu :default-active="$route.path" background-color="#001529" text-color="#fff">
           <Menu :menuList="menuList" />
         </el-menu>
       </el-scrollbar>
     </div>
     <!-- 顶部导航 -->
-    <div class="layout-tabbar">顶部</div>
+    <div class="layout-tabbar">
+      <Tabbar />
+    </div>
     <!-- 内容展示 -->
-    <div class="layout-main">内容</div>
+    <div class="layout-main">
+      <Main />
+    </div>
   </div>
 </template>
 
@@ -20,10 +24,15 @@
 import { reactive } from 'vue';
 import Logo from './logo/index.vue';
 import Menu from './menu/index.vue';
+import Tabbar from './tabbar/index.vue';
+import Main from './main/index.vue';
 
 import useUserStore from '@/store/modules/user.ts';
 const userStore = useUserStore();
 const menuList = reactive(userStore.menuRoutes);
+
+import { useRoute } from 'vue-router';
+const $route = useRoute();
 </script>
 
 <style lang="scss" scoped>
@@ -53,7 +62,7 @@ const menuList = reactive(userStore.menuRoutes);
     left: $base-menu-width;
     width: calc(100% - #{$base-menu-width});
     height: $base-tabbar-height;
-    background-color: violet;
+    background-color: #fff;
   }
 
   .layout-main {
