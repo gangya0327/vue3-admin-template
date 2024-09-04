@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { login } from '@/api/user/index.ts';
+import { login, getUserInfo } from '@/api/user/index.ts';
 import type { loginForm, loginResponseData } from '@/api/user/type.ts';
 import type { userState } from './types/types.ts';
 import { SET_TOKEN, GET_TOKEN } from '@/utils/token.ts';
@@ -12,9 +12,12 @@ const useUserStore = defineStore('User', {
     return {
       token: GET_TOKEN(),
       menuRoutes: constantRoutes, // 存储菜单路由
+      username: '',
+      avatar: '',
     };
   },
   actions: {
+    // 用户登录
     async userLogin(data: loginForm) {
       const result: loginResponseData = await login(data);
       if (result.code === 200) {
@@ -23,6 +26,14 @@ const useUserStore = defineStore('User', {
         return 'ok';
       } else {
         return Promise.reject(new Error(result.data.message));
+      }
+    },
+    // 获取用户信息
+    async getUserInfo() {
+      const result = await getUserInfo();
+      if (result.code === 200) {
+        this.username = result.data.checkUser.username;
+        this.avatar = result.data.checkUser.avatar;
       }
     },
   },

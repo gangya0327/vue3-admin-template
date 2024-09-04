@@ -2,4 +2,6 @@
 export interface userState {
   token: string | null;
   menuRoutes: [];
+  username: string;
+  avatar: string;
 }

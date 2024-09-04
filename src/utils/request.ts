@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosRequestHeaders, AxiosResponse } from 'axios';
 import { ElMessage } from 'element-plus';
+import useUserStore from '../store/modules/user';
 
 // 自定义请求接口headers头参数类型
 type ResponseHeader = AxiosRequestHeaders & { token?: string };
@@ -22,6 +23,10 @@ const service = axios.create({
 
 // 添加请求拦截器
 service.interceptors.request.use((config: RequestInterceptorsConfig) => {
+  const userStore = useUserStore();
+  if (userStore.token) {
+    config.headers.token = userStore.token;
+  }
   // 返回配置对象
   return config;
 });
