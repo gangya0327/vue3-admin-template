@@ -25,10 +25,13 @@
 import { User, Lock } from '@element-plus/icons-vue';
 import { reactive, ref } from 'vue';
 import userUserStore from '@/store/modules/user.ts';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { ElNotification } from 'element-plus';
 import { getTime } from '@/utils/time.ts';
 
+const $route = useRoute();
+
+console.log('$route :>> ', $route);
 const $router = useRouter();
 
 const loading = ref(false);
@@ -44,7 +47,7 @@ const login = async () => {
   loading.value = true;
   try {
     await userStore.userLogin(loginForm);
-    $router.push('/');
+    $router.push(($route.query.redirect as string) || '/');
     loading.value = false;
     ElNotification({ type: 'success', title: getTime() + '好', message: '登录成功' });
   } catch (error) {

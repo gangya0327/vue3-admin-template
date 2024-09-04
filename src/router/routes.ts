@@ -13,10 +13,10 @@ export const constantRoutes = [
   },
   {
     path: '/',
-    // redirect: '/home',
     // meta: { title: '布局', icon: 'Crop' },
     meta: { title: '', icon: 'Crop' },
     component: () => import('@/layout/index.vue'),
+    redirect: '/home',
     children: [
       {
         path: '/home',

@@ -12,7 +12,7 @@
     </span>
 
     <template #dropdown>
-      <el-dropdown-item>ABC</el-dropdown-item>
+      <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
       <el-dropdown-item>ABC</el-dropdown-item>
       <el-dropdown-item>ABC</el-dropdown-item>
     </template>
@@ -22,6 +22,7 @@
 <script lang="ts" setup>
 import useLayoutSettingStore from '@/store/modules/setting.ts';
 import useUserStore from '@/store/modules/user.ts';
+import { useRoute, useRouter } from 'vue-router';
 
 const layoutSettingStore = useLayoutSettingStore();
 const userStore = useUserStore();
@@ -38,6 +39,14 @@ const fullScreen = () => {
   } else {
     document.exitFullscreen();
   }
+};
+
+const $route = useRoute();
+const $router = useRouter();
+// 退出登录
+const logout = () => {
+  userStore.logout();
+  $router.push({ path: '/login', query: { redirect: $route.fullPath } });
 };
 </script>
 

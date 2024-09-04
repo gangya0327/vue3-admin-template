@@ -26,6 +26,8 @@ import '@/styles/index.scss';
 import router from '@/router/index.ts';
 app.use(router);
 
+import './permission.ts';
+
 import pinia from '@/store/index.ts';
 app.use(pinia);
 
