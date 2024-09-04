@@ -9,6 +9,10 @@
 import setting from '@/setting.ts';
 </script>
 
+<script lang="ts">
+export default { name: 'Logo' };
+</script>
+
 <style lang="scss" scoped>
 .logo {
   width: 100%;

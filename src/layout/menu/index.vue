@@ -11,9 +11,9 @@
     </template>
     <!-- 有子路由且只有一个 -->
     <template v-if="item.children && item.children.length === 1">
-      <el-menu-item v-if="!item.hidden" :index="item.children[0].path">
+      <el-menu-item v-if="!item.hidden" :index="item.children[0].path" @click="goRoute">
         <template #title>
-          <el-icon> <component :is="item.meta.icon"></component> </el-icon>
+          <el-icon> <component :is="item.children[0].meta.icon"></component> </el-icon>
           <span>{{ item.children[0].meta.title }}</span>
         </template>
       </el-menu-item>
