@@ -1,8 +1,8 @@
 <template>
   <div class="login-container">
     <el-row>
-      <el-col :span="12" :xs="0"></el-col>
-      <el-col :span="12" :xs="24">
+      <el-col :span="15" :xs="0"></el-col>
+      <el-col :span="9" :xs="24">
         <el-form class="login-form" :model="loginForm" :rules="rules" ref="loginFormRef">
           <h1>你好</h1>
           <h2>欢迎来到英明甄选</h2>
@@ -105,7 +105,7 @@ const rules = reactive({
 
   .login-form {
     position: relative;
-    width: 60%;
+    width: 80%;
     max-width: 600px;
     top: 30vh;
     padding: 10px 20px;
