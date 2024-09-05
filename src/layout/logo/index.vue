@@ -25,7 +25,7 @@ export default { name: 'Logo' };
   > img {
     width: 40px;
     height: 40px;
-    margin: 10px;
+    margin: 12px;
   }
 }
 </style>

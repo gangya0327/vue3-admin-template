@@ -1,7 +1,7 @@
 <template>
   <div class="layout-container">
     <!-- 左侧菜单 -->
-    <div class="layout-slider" :class="{ fold: layoutSettingStore.fold ? true : false }">
+    <div class="layout-slider">
       <Logo />
       <el-scrollbar class="scrollbar">
         <el-menu :collapse="layoutSettingStore.fold" :default-active="$route.path" background-color="#001529" text-color="#fff">
@@ -62,10 +62,6 @@ export default { name: 'Layout' };
       .el-menu {
         border-right: none;
       }
-    }
-
-    &.fold {
-      width: $base-menu-min-width;
     }
   }
 

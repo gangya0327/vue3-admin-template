@@ -13,3 +13,7 @@
   border-radius: 6px;
   background-color: #ccc;
 }
+
+#nprogress .bar {
+  background-image: linear-gradient(to right, red, orange) !important;
+}
