@@ -1,5 +1,5 @@
 import request from '@/utils/request.ts';
-import type { loginForm, loginResponseData, userInfoResponseData } from './type';
+import type { loginFormData, loginResponseData, userInfoResponseData } from './type';
 
 enum API {
   // LOGIN_URL = '/user/login',
@@ -10,8 +10,8 @@ enum API {
   LOGOUT_URL = '/admin/acl/index/logout',
 }
 
-export const login = (data: loginForm) => request.post<any, any>(API.LOGIN_URL, data);
+export const login = (data: loginFormData) => request.post<any, loginResponseData>(API.LOGIN_URL, data);
 
-export const getUserInfo = (data: any) => request.get<any, any>(API.USERINFO_URL, data);
+export const getUserInfo = () => request.get<any, userInfoResponseData>(API.USERINFO_URL);
 
 export const logout = () => request.post<any, any>(API.LOGOUT_URL);

@@ -8,9 +8,12 @@ declare module '*.vue' {
   export default component;
 }
 
-declare module '*.ts' {
-  const value: any;
-  export default value;
-}
+// declare module '*.ts' {
+//   const value: any;
+//   export default value;
+// }
+
+declare module "*.ts";
+
 
 declare module 'nprogress'

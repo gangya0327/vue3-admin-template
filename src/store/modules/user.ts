@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { login, getUserInfo, logout } from '@/api/user/index.ts';
-// import type { loginForm, loginResponseData } from '@/api/user/type.ts';
 import type { userState } from './types/types.ts';
+import type { loginFormData, loginResponseData, userInfoResponseData } from '../../api/user/type.ts';
 import { SET_TOKEN, GET_TOKEN, REMOVE_TOKEN } from '@/utils/token.ts';
 
 // 引入路由
@@ -18,7 +18,7 @@ const useUserStore = defineStore('User', {
   },
   actions: {
     // 用户登录
-    async userLogin(data: loginForm) {
+    async userLogin(data: loginFormData) {
       const result: loginResponseData = await login(data);
       if (result.code === 200) {
         this.token = result.data;
@@ -30,7 +30,7 @@ const useUserStore = defineStore('User', {
     },
     // 获取用户信息
     async getUserInfo() {
-      const result = await getUserInfo();
+      const result: userInfoResponseData = await getUserInfo();
       if (result.code === 200) {
         this.username = result.data.name;
         this.avatar = result.data.avatar;
@@ -40,7 +40,8 @@ const useUserStore = defineStore('User', {
     },
     // 退出登录
     async logout() {
-      const result = await logout();
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result: any = await logout();
       if (result.code === 200) {
         this.token = '';
         this.username = '';
