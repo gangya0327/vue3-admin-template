@@ -16,9 +16,11 @@ export interface loginResponseData extends responseData {
 }
 
 export interface userInfoResponseData extends responseData {
-  routes: string[];
-  buttons: string[];
-  roles: string[];
-  name: string;
-  avatar: string;
+  data: {
+    routes: string[];
+    buttons: string[];
+    roles: string[];
+    name: string;
+    avatar: string;
+  };
 }

@@ -4,7 +4,13 @@
     <div class="layout-slider">
       <Logo />
       <el-scrollbar class="scrollbar">
-        <el-menu :collapse="layoutSettingStore.fold" :default-active="$route.path" background-color="#001529" text-color="#fff">
+        <el-menu
+          :collapse="layoutSettingStore.fold"
+          :default-active="$route.path"
+          unique-opened
+          background-color="#001529"
+          text-color="#fff"
+        >
           <Menu :menuList="menuList" />
         </el-menu>
       </el-scrollbar>
@@ -83,9 +89,10 @@ export default { name: 'Layout' };
     position: absolute;
     top: $base-tabbar-height;
     left: $base-menu-width;
-    width: calc(100% - #{$base-menu-width});
-    height: calc(100% - #{$base-tabbar-height});
-    background-color: tan;
+    width: calc(100% - #{$base-menu-width} - 40px);
+    height: calc(100% - #{$base-tabbar-height} - 40px);
+    padding: 20px;
+    // background-color: tan;
     transition: all 0.3s;
 
     &.fold {
